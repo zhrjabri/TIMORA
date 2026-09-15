@@ -1,0 +1,268 @@
+@import "tailwindcss";
+
+/*
+ * TIMORA design tokens.
+ * Light is the default palette on :root. Dark applies when the user picks dark
+ * (data-theme="dark") or picks system and the OS prefers dark.
+ * Every text/background pair below is verified ≥ 4.5:1 in tests/unit/contrast.test.ts.
+ */
+:root {
+  --brand-black: #111111;
+  --brand-ivory: #f7f5f0;
+  --brand-gold: #c8a96b;
+  --brand-gray: #8c8c8c;
+
+  --bg: #f7f5f0;
+  --surface: #fdfcf9;
+  --surface-muted: #efece5;
+  --ink: #111111;
+  --ink-2: #5e5b55;
+  --ink-3: #6b6862;
+  --line: #e4dfd4;
+  --line-strong: #8c8c8c;
+  --accent: #c8a96b;
+  --accent-ink: #7d6431;
+  --focus: #111111;
+
+  --primary: #111111;
+  --primary-ink: #f7f5f0;
+  --primary-hover: #2a2a29;
+
+  --good: #2f6b45;
+  --good-bg: #e3eee5;
+  --soon: #7a5712;
+  --soon-bg: #f4ead2;
+  --today: #8a4210;
+  --today-bg: #f7e1ce;
+  --overdue: #9b2c1f;
+  --overdue-bg: #f7deda;
+  --neutral: #5e5b55;
+  --neutral-bg: #eae7e0;
+
+  --elev-raise: 0 1px 2px rgb(17 17 17 / 0.06), 0 4px 16px rgb(17 17 17 / 0.05);
+  --elev-float: 0 8px 32px rgb(17 17 17 / 0.14);
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111111;
+    --surface: #1a1a19;
+    --surface-muted: #242422;
+    --ink: #f7f5f0;
+    --ink-2: #b3afa6;
+    --ink-3: #9c988f;
+    --line: #2e2d2a;
+    --line-strong: #6e6b66;
+    --accent: #c8a96b;
+    --accent-ink: #c8a96b;
+    --focus: #c8a96b;
+    --primary: #c8a96b;
+    --primary-ink: #111111;
+    --primary-hover: #d6bb85;
+    --good: #8fcb9f;
+    --good-bg: #1c2a20;
+    --soon: #e2c37f;
+    --soon-bg: #2e2716;
+    --today: #f0a872;
+    --today-bg: #34231a;
+    --overdue: #f29a8c;
+    --overdue-bg: #3a1f1b;
+    --neutral: #b3afa6;
+    --neutral-bg: #262523;
+    --elev-raise: 0 1px 2px rgb(0 0 0 / 0.4);
+    --elev-float: 0 8px 32px rgb(0 0 0 / 0.5);
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #111111;
+  --surface: #1a1a19;
+  --surface-muted: #242422;
+  --ink: #f7f5f0;
+  --ink-2: #b3afa6;
+  --ink-3: #9c988f;
+  --line: #2e2d2a;
+  --line-strong: #6e6b66;
+  --accent: #c8a96b;
+  --accent-ink: #c8a96b;
+  --focus: #c8a96b;
+  --primary: #c8a96b;
+  --primary-ink: #111111;
+  --primary-hover: #d6bb85;
+  --good: #8fcb9f;
+  --good-bg: #1c2a20;
+  --soon: #e2c37f;
+  --soon-bg: #2e2716;
+  --today: #f0a872;
+  --today-bg: #34231a;
+  --overdue: #f29a8c;
+  --overdue-bg: #3a1f1b;
+  --neutral: #b3afa6;
+  --neutral-bg: #262523;
+  --elev-raise: 0 1px 2px rgb(0 0 0 / 0.4);
+  --elev-float: 0 8px 32px rgb(0 0 0 / 0.5);
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-focus: var(--focus);
+  --color-primary: var(--primary);
+  --color-primary-ink: var(--primary-ink);
+  --color-primary-hover: var(--primary-hover);
+  --color-good: var(--good);
+  --color-good-bg: var(--good-bg);
+  --color-soon: var(--soon);
+  --color-soon-bg: var(--soon-bg);
+  --color-today: var(--today);
+  --color-today-bg: var(--today-bg);
+  --color-overdue: var(--overdue);
+  --color-overdue-bg: var(--overdue-bg);
+  --color-neutral: var(--neutral);
+  --color-neutral-bg: var(--neutral-bg);
+  --color-brand-black: var(--brand-black);
+  --color-brand-ivory: var(--brand-ivory);
+  --color-brand-gold: var(--brand-gold);
+
+  --font-sans: var(--app-font);
+  --font-display: var(--font-alexandria), var(--font-plex-arabic), system-ui, sans-serif;
+
+  --shadow-raise: var(--elev-raise);
+  --shadow-float: var(--elev-float);
+
+  --radius-control: 0.75rem;
+  --radius-card: 1rem;
+
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Arabic leads with the Arabic face; English leads with the Latin face. */
+:root {
+  --app-font: var(--font-plex-arabic), var(--font-plex), system-ui, "Segoe UI", Tahoma, sans-serif;
+}
+:root[lang="en"] {
+  --app-font: var(--font-plex), var(--font-plex-arabic), system-ui, "Segoe UI", sans-serif;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--app-font);
+    font-size: 1rem;
+    line-height: 1.6;
+    min-height: 100dvh;
+  }
+
+  :root[lang="en"] body {
+    line-height: 1.5;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--accent) 40%, transparent);
+    color: var(--ink);
+  }
+
+  /* Numbers inside Arabic text keep a consistent width in lists and counters. */
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+
+  input,
+  textarea,
+  select,
+  button {
+    font: inherit;
+  }
+}
+
+@layer utilities {
+  .safe-bottom {
+    padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@keyframes check-draw {
+  from {
+    stroke-dashoffset: 24;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0.001;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  from {
+    background-position: 100% 0;
+  }
+  to {
+    background-position: -100% 0;
+  }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, var(--surface-muted) 0%, var(--line) 50%, var(--surface-muted) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s linear infinite;
+  border-radius: 0.5rem;
+}
+
+@media print {
+  body {
+    background: #fff;
+    color: #000;
+  }
+  .no-print {
+    display: none !important;
+  }
+}
