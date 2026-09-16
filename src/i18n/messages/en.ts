@@ -3,7 +3,7 @@ import type { Messages } from "./index";
 
 export const en: Messages = {
   meta: {
-    title: "TIMORA",
+    title: "تيمورا Timora",
     tagline: "When did I last do this, and when should I do it again?",
     description: "TIMORA remembers the irregular recurring things for you: water filters, AC service, car oil, document renewals and more.",
   },
@@ -127,7 +127,9 @@ export const en: Messages = {
       { title: "Your data is yours", body: "Every item belongs to your account only, and QR codes reveal nothing to anyone else." },
     ],
     disclaimer: "TIMORA records intervals you choose. It doesn't give medical or technical advice.",
-    footerNote: "Designed Arabic-first.",
+    footerCredit: "Developed by {name}",
+    footerCreditName: "Alzahra Al Jabri",
+    opensInNewTab: "(opens in a new tab)",
   },
   auth: {
     signInTitle: "Sign in",

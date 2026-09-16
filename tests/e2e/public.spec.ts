@@ -27,6 +27,26 @@ test.describe("public pages", () => {
     await expect(page.getByRole("heading", { level: 1, name: "Terms of use" })).toBeVisible();
   });
 
+  test("tab title and footer credit in both languages", async ({ page, context }) => {
+    for (const [locale, credit, legal] of [
+      ["ar", "© 2026 تيمورا · تم التطوير بواسطة Alzahra Al Jabri", "سياسة الخصوصية"],
+      ["en", "© 2026 TIMORA · Developed by Alzahra Al Jabri", "Privacy policy"],
+    ] as const) {
+      await setLocale(context, locale);
+      await page.goto("/");
+      await expect(page).toHaveTitle("تيمورا Timora");
+      const footer = page.locator("footer");
+      await expect(footer.locator("p")).toHaveText(new RegExp(`^${credit.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}`));
+      const link = footer.getByRole("link", { name: /^Alzahra Al Jabri/ });
+      await expect(link).toHaveAttribute("href", "https://alzahra-portfolio.vercel.app/");
+      await expect(link).toHaveAttribute("target", "_blank");
+      await expect(link).toHaveAttribute("rel", "noopener noreferrer");
+      await expect(link).toHaveAttribute("dir", "ltr");
+      await expect(footer.getByRole("link", { name: legal })).toHaveAttribute("href", "/privacy");
+      await expect(footer.getByRole("link", { name: /Terms of use|شروط الاستخدام/ })).toHaveAttribute("href", "/terms");
+    }
+  });
+
   test("unknown routes show the 404 page", async ({ page }) => {
     const response = await page.goto("/this-page-does-not-exist");
     expect(response?.status()).toBe(404);

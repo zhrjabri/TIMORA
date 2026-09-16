@@ -33,13 +33,32 @@ export async function PublicHeader({ showAuthLinks = true }: { showAuthLinks?: b
   );
 }
 
+const PORTFOLIO_URL = "https://alzahra-portfolio.vercel.app/";
+
 export async function PublicFooter() {
   const { m } = await getI18n();
   return (
     <footer className="border-t border-line">
       <div className="mx-auto flex max-w-6xl flex-col gap-3 px-4 py-8 text-sm text-ink-2 sm:flex-row sm:items-center sm:justify-between sm:px-6">
         <p>
-          © 2026 {m.common.appName} · {m.landing.footerNote}
+          © 2026 {m.common.appName} ·{" "}
+          {m.landing.footerCredit.split(/(\{name\})/).map((part, i) =>
+            part === "{name}" ? (
+              <a
+                key={i}
+                href={PORTFOLIO_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                dir="ltr"
+                className="rounded-sm font-medium text-ink underline decoration-line-strong decoration-1 underline-offset-4 transition-colors hover:decoration-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+              >
+                {m.landing.footerCreditName}
+                <span className="sr-only"> {m.landing.opensInNewTab}</span>
+              </a>
+            ) : (
+              part
+            ),
+          )}
         </p>
         <nav aria-label={m.legal.privacyTitle} className="flex gap-4">
           <Link href="/privacy" className="underline-offset-4 hover:text-ink hover:underline">

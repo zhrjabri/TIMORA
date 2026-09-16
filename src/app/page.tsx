@@ -10,7 +10,7 @@ import { PublicFooter, PublicHeader } from "@/components/app/public-shell";
 
 export async function generateMetadata(): Promise<Metadata> {
   const { m } = await getI18n();
-  return { title: { absolute: `${m.meta.title} — ${m.meta.tagline}` } };
+  return { title: { absolute: m.meta.title } };
 }
 
 /**

@@ -2,7 +2,7 @@ import { p } from "../format";
 
 export const ar = {
   meta: {
-    title: "تيمورا",
+    title: "تيمورا Timora",
     tagline: "متى فعلتها آخر مرة، ومتى أفعلها مجددًا؟",
     description: "تيمورا يتذكّر عنك المهام المتكررة غير المنتظمة: فلتر الماء، صيانة المكيف، زيت السيارة، تجديد الوثائق وغيرها.",
   },
@@ -126,7 +126,9 @@ export const ar = {
       { title: "بياناتك لك وحدك", body: "كل عنصر مرتبط بحسابك فقط، ورموز QR لا تكشف شيئًا لغيرك." },
     ],
     disclaimer: "تيمورا يسجّل الفترات التي تحددها أنت، ولا يقدّم نصائح طبية أو فنية.",
-    footerNote: "صُنع للعربية أولًا.",
+    footerCredit: "تم التطوير بواسطة {name}",
+    footerCreditName: "Alzahra Al Jabri",
+    opensInNewTab: "(يُفتح في نافذة جديدة)",
   },
   auth: {
     signInTitle: "تسجيل الدخول",

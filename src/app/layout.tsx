@@ -32,7 +32,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
   return {
     metadataBase: new URL(siteUrl),
-    title: { default: `${m.meta.title} · ${m.meta.tagline}`, template: `%s · ${m.meta.title}` },
+    title: { default: m.meta.title, template: `%s · ${m.meta.title}` },
     description: m.meta.description,
     applicationName: "TIMORA",
     appleWebApp: { capable: true, title: "TIMORA", statusBarStyle: "default" },
